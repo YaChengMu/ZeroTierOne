@@ -57,6 +57,7 @@ endif
 ifeq ($(ZT_DEBUG),1)
 	override CFLAGS+=-Wall -Wno-deprecated -g -pthread $(INCLUDES) $(DEFS)
 	override CXXFLAGS+=-Wall -Wno-deprecated -g -std=c++11 -pthread $(INCLUDES) $(DEFS)
+	override CXXFLAGS+=-D_GLIBCXX_USE_C99 -D_GLIBCXX_USE_C99_MATH -D_GLIBCXX_USE_C99_MATH_TR1
 	ZT_TRACE=1
 	STRIP?=echo
 	# The following line enables optimization for the crypto code, since
@@ -67,6 +68,7 @@ else
 	override CFLAGS+=-Wall -Wno-deprecated -pthread $(INCLUDES) -DNDEBUG $(DEFS)
 	CXXFLAGS?=-O3 -fstack-protector
 	override CXXFLAGS+=-Wall -Wno-deprecated -std=c++11 -pthread $(INCLUDES) -DNDEBUG $(DEFS)
+	override CXXFLAGS+=-D_GLIBCXX_USE_C99 -D_GLIBCXX_USE_C99_MATH -D_GLIBCXX_USE_C99_MATH_TR1
 	LDFLAGS+=-Wl,-z,relro,-z,now
 	STRIP?=strip
 	STRIP+=--strip-all
